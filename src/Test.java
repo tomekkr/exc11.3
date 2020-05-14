@@ -16,22 +16,22 @@ class Test {
                 Scanner scanner = new Scanner(file)
         ) {
             while (scanner.hasNextLine()) {
-                int number1 = scanner.nextInt();
+                int firstNumber = scanner.nextInt();
                 String operator = scanner.next();
-                int number2 = scanner.nextInt();
-                int result = performOperation(operator, number1, number2);
-                String mathOperationInOneLine = number1 + " " + operator + " " + number2 + " = " + result;
+                int secondNumber = scanner.nextInt();
+                int result = performOperation(operator, firstNumber, secondNumber);
+                String mathOperationInOneLine = firstNumber + " " + operator + " " + secondNumber + " = " + result;
                 System.out.println(mathOperationInOneLine);
                 fileWriter.write(mathOperationInOneLine + "\n");
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Nie odnaleziono pliku: " + fileName);
+            System.err.println("Nie odnaleziono pliku: " + fileName);
         } catch (InputMismatchException e) {
-            System.out.println("Nieprawidłowe dane");
+            System.err.println("Nieprawidłowe dane");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ArithmeticException e) {
-            System.out.println("Nie można dzielić przez 0");
+            System.err.println("Nieprawidłowe działanie matematyczne: " + e.getLocalizedMessage());
         }
     }
 
